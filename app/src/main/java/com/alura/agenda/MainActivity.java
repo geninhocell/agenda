@@ -1,11 +1,17 @@
 package com.alura.agenda;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import com.alura.agenda.dao.AlunoDAO;
 import com.alura.agenda.modelo.Aluno;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,6 +67,22 @@ public class MainActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         final Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position);
+
+        MenuItem itemLigar = menu.add("Ligar");
+        itemLigar.setOnMenuItemClickListener(item -> {
+            if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE)
+                    != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.CALL_PHONE}, 123);
+            } else {
+                Intent intentLigar = new Intent(Intent.ACTION_CALL);
+                intentLigar.setData(Uri.parse("tel:" + aluno.getTelefone()));
+                startActivity(intentLigar);
+            }
+            return false;
+        });
+
+
         
         MenuItem itemSMS = menu.add("Enviar SMS");
         Intent intentSMS = new Intent(Intent.ACTION_VIEW);
