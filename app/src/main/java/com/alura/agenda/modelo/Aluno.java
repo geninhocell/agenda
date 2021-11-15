@@ -1,5 +1,7 @@
 package com.alura.agenda.modelo;
 
+import androidx.annotation.NonNull;
+
 public class Aluno {
     private Long id;
     private String nome;
@@ -56,6 +58,7 @@ public class Aluno {
         this.nota = nota;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return getId() + " - " + getNome();

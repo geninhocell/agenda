@@ -5,28 +5,24 @@ import android.os.Bundle;
 
 import com.alura.agenda.dao.AlunoDAO;
 import com.alura.agenda.modelo.Aluno;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.alura.agenda.databinding.ActivityMainBinding;
-
-import android.view.Menu;
+import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListView listaAlunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +30,30 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        listaAlunos = findViewById(R.id.lista_alunos);
 
-
-        Button novoAluno = (Button) findViewById(R.id.novo_aluno);
-        novoAluno.setOnClickListener(new View.OnClickListener() {
+        listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent itentVaiFormulario = new Intent(MainActivity.this, FormularioActivity.class);
-                startActivity(itentVaiFormulario);
+            public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
+                Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(position);
+                Toast.makeText(MainActivity.this, "Aluno " + aluno.getNome() + " clicado!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        Button novoAluno = findViewById(R.id.novo_aluno);
+        novoAluno.setOnClickListener(v -> {
+            Intent itentVaiFormulario = new Intent(MainActivity.this, FormularioActivity.class);
+            startActivity(itentVaiFormulario);
+        });
+
+        registerForContextMenu(listaAlunos);
     }
 
     private void carregaLista() {
         AlunoDAO alunoDAO = new AlunoDAO(this);
         List<Aluno> alunos = alunoDAO.buscaAlunos();
         alunoDAO.close();
-
-        ListView listaAlunos = (ListView) findViewById(R.id.lista_alunos);
-
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+        ArrayAdapter<Aluno> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
         listaAlunos.setAdapter(adapter);
     }
 
@@ -61,5 +61,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         carregaLista();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+       MenuItem deletar = menu.add("Deletar");
+       deletar.setOnMenuItemClickListener(item -> {
+           AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+           Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position);
+
+           AlunoDAO alunoDAO = new AlunoDAO(this);
+           alunoDAO.deleta(aluno);
+           alunoDAO.close();
+
+           carregaLista();
+           return false;
+       });
     }
 }

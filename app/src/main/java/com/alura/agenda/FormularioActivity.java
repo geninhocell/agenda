@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.alura.agenda.dao.AlunoDAO;
@@ -36,16 +33,14 @@ public class FormularioActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_formulario_ok:
-                Aluno aluno = helper.pegaAluno();
-                AlunoDAO alunoDAO = new AlunoDAO(this);
-                alunoDAO.insere(aluno);
-                alunoDAO.close();
+        if (item.getItemId() == R.id.menu_formulario_ok) {
+            Aluno aluno = helper.pegaAluno();
+            AlunoDAO alunoDAO = new AlunoDAO(this);
+            alunoDAO.insere(aluno);
+            alunoDAO.close();
 
-                Toast.makeText(FormularioActivity.this, "Aluno " + aluno.getNome() + " salvo!", Toast.LENGTH_SHORT).show();
-                finish();
-                break;
+            Toast.makeText(FormularioActivity.this, "Aluno " + aluno.getNome() + " salvo!", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
 
