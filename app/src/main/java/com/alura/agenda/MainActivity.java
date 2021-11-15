@@ -36,14 +36,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
                 Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(position);
-                Toast.makeText(MainActivity.this, "Aluno " + aluno.getNome() + " clicado!", Toast.LENGTH_SHORT).show();
+                Intent intentVaiFormulario = new Intent(MainActivity.this, FormularioActivity.class);
+                intentVaiFormulario.putExtra("aluno", aluno);
+                startActivity(intentVaiFormulario);
             }
         });
 
         Button novoAluno = findViewById(R.id.novo_aluno);
         novoAluno.setOnClickListener(v -> {
-            Intent itentVaiFormulario = new Intent(MainActivity.this, FormularioActivity.class);
-            startActivity(itentVaiFormulario);
+            Intent intentVaiFormulario = new Intent(MainActivity.this, FormularioActivity.class);
+            startActivity(intentVaiFormulario);
         });
 
         registerForContextMenu(listaAlunos);
