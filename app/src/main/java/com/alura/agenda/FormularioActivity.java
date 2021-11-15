@@ -4,14 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.alura.agenda.dao.AlunoDAO;
 import com.alura.agenda.modelo.Aluno;
+
+import java.io.File;
 
 public class FormularioActivity extends AppCompatActivity {
 
@@ -30,7 +35,14 @@ public class FormularioActivity extends AppCompatActivity {
             helper.preencheFormulario(aluno);
         }
 
-
+        Button botaoFoto = findViewById(R.id.formulario_botao_foto);
+        botaoFoto.setOnClickListener(v -> {
+            Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            String caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+            File arquivoFoto = new File(caminhoFoto);
+            intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
+            startActivity(intentCamera);
+        });
     }
 
     @Override
