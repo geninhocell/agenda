@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/camera_fundo.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/fundo.xml" value="0.190625" />
-        <entry key="app/src/main/res/layout/activity_formulario.xml" value="0.12001811594202899" />
+        <entry key="app/src/main/res/drawable/fundo_camera.xml" value="0.190625" />
+        <entry key="app/src/main/res/layout/activity_formulario.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />

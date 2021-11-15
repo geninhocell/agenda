@@ -1,45 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="225dp">
+
+            <ImageView
+                android:id="@+id/formulario_foto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#00a8ec"
+                android:contentDescription="person"
+                android:src="@drawable/person"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/formulario_botao_foto"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/fundo_camera" />
+        </RelativeLayout>
+
         <EditText
+            android:id="@+id/formulario_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nome"
-            android:id="@+id/formulario_nome"/>
+            tools:ignore="HardcodedText"
+            android:inputType="text"
+            android:autofillHints="name" />
 
         <EditText
+            android:id="@+id/formulario_endereco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Endereço"
-            android:id="@+id/formulario_endereco"/>
+            tools:ignore="HardcodedText"
+            android:autofillHints="name"
+            android:inputType="text" />
 
         <EditText
+            android:id="@+id/formulario_telefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Telefone"
-            android:id="@+id/formulario_telefone"/>
+            tools:ignore="HardcodedText"
+            android:autofillHints="phone"
+            android:inputType="phone" />
 
         <EditText
+            android:id="@+id/formulario_site"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Site"
-            android:id="@+id/formulario_site"/>
+            tools:ignore="HardcodedText"
+            android:autofillHints="name"
+            android:inputType="text" />
 
         <RatingBar
+            android:id="@+id/formulario_nota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="5"
-            android:max="10"
             android:layout_gravity="center"
-            android:id="@+id/formulario_nota"/>
-
+            android:max="10"
+            android:numStars="5" />
 
 
     </LinearLayout>
