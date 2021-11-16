@@ -20,7 +20,7 @@
                 android:background="#00a8ec"
                 android:contentDescription="person"
                 android:src="@drawable/person"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText,ImageContrastCheck" />
 
             <Button
                 android:id="@+id/formulario_botao_foto"
@@ -29,44 +29,49 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/fundo_camera" />
+                android:background="@drawable/ic_camera"
+                tools:ignore="SpeakableTextPresentCheck" />
         </RelativeLayout>
 
         <EditText
             android:id="@+id/formulario_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="name"
             android:hint="Nome"
-            tools:ignore="HardcodedText"
             android:inputType="text"
-            android:autofillHints="name" />
+            android:minHeight="48dp"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/formulario_endereco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Endereço"
-            tools:ignore="HardcodedText"
             android:autofillHints="name"
-            android:inputType="text" />
+            android:hint="Endereço"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="HardcodedText,TextContrastCheck" />
 
         <EditText
             android:id="@+id/formulario_telefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telefone"
-            tools:ignore="HardcodedText"
             android:autofillHints="phone"
-            android:inputType="phone" />
+            android:hint="Telefone"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/formulario_site"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Site"
-            tools:ignore="HardcodedText"
             android:autofillHints="name"
-            android:inputType="text" />
+            android:hint="Site"
+            android:inputType="text"
+            android:minHeight="48dp"
+            tools:ignore="HardcodedText" />
 
         <RatingBar
             android:id="@+id/formulario_nota"
@@ -74,7 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:max="10"
-            android:numStars="5" />
+            android:numStars="5"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
     </LinearLayout>
