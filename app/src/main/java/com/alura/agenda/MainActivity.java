@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+
+import com.alura.agenda.adapter.AlunosAdapter;
 import com.alura.agenda.dao.AlunoDAO;
 import com.alura.agenda.modelo.Aluno;
 
@@ -53,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         AlunoDAO alunoDAO = new AlunoDAO(this);
         List<Aluno> alunos = alunoDAO.buscaAlunos();
         alunoDAO.close();
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
+//        ArrayAdapter<Aluno> adapter = new ArrayAdapter<>(this, R.layout.list_item, alunos);
+        AlunosAdapter adapter = new AlunosAdapter(this, alunos);
         listaAlunos.setAdapter(adapter);
     }
 
