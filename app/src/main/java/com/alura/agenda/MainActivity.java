@@ -65,13 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_enviar_notas) {
-            AlunoDAO dao = new AlunoDAO(this);
-            List<Aluno> alunos = dao.buscaAlunos();
-            dao.close();
-
-            AlunoConverter conversor = new AlunoConverter();
-            String json = conversor.converteParaJSON(alunos);
-            Toast.makeText(this, json, Toast.LENGTH_LONG).show();
+            new EnviaAlunosTask(this).execute();
         }
         return super.onOptionsItemSelected(item);
     }
