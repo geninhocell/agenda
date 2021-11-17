@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.alura.agenda.adapter.AlunosAdapter;
+import com.alura.agenda.converter.AlunoConverter;
 import com.alura.agenda.dao.AlunoDAO;
 import com.alura.agenda.modelo.Aluno;
 
@@ -15,12 +16,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +53,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
         registerForContextMenu(listaAlunos);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_enviar_notas) {
+            AlunoDAO dao = new AlunoDAO(this);
+            List<Aluno> alunos = dao.buscaAlunos();
+            dao.close();
+
+            AlunoConverter conversor = new AlunoConverter();
+            String json = conversor.converteParaJSON(alunos);
+            Toast.makeText(this, json, Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void carregaLista() {

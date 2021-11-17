@@ -1,0 +1,16 @@
+{
+  "list": [
+    {
+      "aluno": [
+        {
+          "id": "1",
+          "nome": "Felipe",
+          "endereco": "Rua tal",
+          "telefone": "62993930513",
+          "site": "www.alura.com.br",
+          "nota": "4.5"
+        }
+      ]
+    }
+  ]
+}
