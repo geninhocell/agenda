@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/camera_fundo.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/fundo.xml" value="0.190625" />
         <entry key="app/src/main/res/drawable/fundo_camera.xml" value="0.190625" />
+        <entry key="app/src/main/res/layout-land/activity_provas.xml" value="0.1" />
         <entry key="app/src/main/res/layout-land/list_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_detalhes_prova.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_formulario.xml" value="0.33" />
@@ -13,6 +14,7 @@
         <entry key="app/src/main/res/layout/activity_provas.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_provas_tablet.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_detalhes_prova.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_lista_provas.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1" />
