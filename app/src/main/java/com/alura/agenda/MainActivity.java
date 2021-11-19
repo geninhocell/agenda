@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -66,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_enviar_notas) {
             new EnviaAlunosTask(this).execute();
+        }
+        if(item.getItemId() == R.id.menu_baixar_provas){
+            Intent vaiParaProvas = new Intent(this, ProvasActivity.class);
+            startActivity(vaiParaProvas);
         }
         return super.onOptionsItemSelected(item);
     }
