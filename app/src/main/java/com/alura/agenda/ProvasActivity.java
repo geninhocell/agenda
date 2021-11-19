@@ -1,20 +1,13 @@
 package com.alura.agenda;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.alura.agenda.modelo.Prova;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class ProvasActivity extends AppCompatActivity {
 
@@ -22,6 +15,7 @@ public class ProvasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provas);
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction tx = fragmentManager.beginTransaction();
@@ -34,5 +28,26 @@ public class ProvasActivity extends AppCompatActivity {
 
     private boolean estaNoModoPaisagem() {
         return getResources().getBoolean(R.bool.modoPaisagem);
+    }
+
+    public void selecionaProva(Prova prova) {
+        FragmentManager supportFragmentManager = getSupportFragmentManager();
+        if(!estaNoModoPaisagem()) {
+            FragmentTransaction tx = supportFragmentManager.beginTransaction();
+
+            DetalhesProvaFragment detalhesProvaFragment = new DetalhesProvaFragment();
+            Bundle parametros = new Bundle();
+            parametros.putSerializable("prova", prova);
+            detalhesProvaFragment.setArguments(parametros);
+
+            tx.replace(R.id.frame_principal, detalhesProvaFragment);
+            tx.addToBackStack(null);
+
+            tx.commit();
+        }else{
+            DetalhesProvaFragment detalhesFragment = (DetalhesProvaFragment) supportFragmentManager
+                    .findFragmentById(R.id.frame_secundario);
+            detalhesFragment.populaCamposCom(prova);
+        }
     }
 }
